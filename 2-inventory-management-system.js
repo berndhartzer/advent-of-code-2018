@@ -12,12 +12,30 @@ const inventoryManagementSystemPartOne = (input) => {
         }
         return { ...inner, [j.length]: 1 }
       }, {})
-    }
+    };
   }, {});
 
   return counts['2'] * counts['3'];
 };
 
+const inventoryManagementSystemPartTwo = (input) => {
+  return input.reduce((outer, item, i) => {
+    const itemParts = item.split('');
+    const remaining = input.slice(i + 1, input.length);
+
+    const match = remaining.reduce((inner, innerItem) => {
+      const innerParts = innerItem.split('');
+      const matchingChars = itemParts.filter((char, j) => char === innerParts[j]);
+      if (matchingChars.length === itemParts.length - 1) return matchingChars.join('');
+      return inner;
+    }, '');
+
+    if (match.length === 0) return outer;
+    return match
+  }, '');
+};
+
 module.exports = {
   inventoryManagementSystemPartOne,
+  inventoryManagementSystemPartTwo,
 };
