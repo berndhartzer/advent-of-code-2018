@@ -49,11 +49,10 @@ const noMatterHowYouSliceItPartTwo = (input) => {
 
   const knownOverlaps = [...new Set(Object.values(fabric).filter(o => o.length > 1).reduce((a, p) => a.concat(p)))];
 
-  return input.reduce((a, val) => {
-    const [claim, x, y, w, h] = val.match(/\d+/g).map(n => Number(n));
-    if (knownOverlaps.includes(claim)) return a;
-    return [...a, claim];
-  }, [])[0];
+  return input.filter(val => {
+    const [claim, ...rest] = val.match(/\d+/g).map(n => Number(n));
+    return !knownOverlaps.includes(claim);
+  })[0].match(/\d+/g).map(n => Number(n))[0];
 };
 
 module.exports = {
