@@ -17,6 +17,19 @@ const alchemicalReductionPartOne = (input) => {
   return polymer.length;
 };
 
+const alchemicalReductionPartTwo = (input) => {
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
+
+  const polymers = alphabet.map(letter => {
+    const re = new RegExp(`[${letter}${String.fromCharCode(letter.charCodeAt() - 32)}]`, 'g');
+    const stripped = input.replace(re, '');
+    return alchemicalReductionPartOne(stripped);
+  });
+
+  return polymers.reduce((a, length) => Math.min(a, length));
+};
+
 module.exports = {
   alchemicalReductionPartOne,
+  alchemicalReductionPartTwo,
 };
