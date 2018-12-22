@@ -39,16 +39,16 @@ describe('6. Chronal Coordinates', () => {
         '5, 5',
         '8, 9',
       ];
-      const output = chronalCoordinatesPartTwo(input);
-      expect(output).toBe(17);
+      const output = chronalCoordinatesPartTwo(input, 32);
+      expect(output).toBe(16);
     });
 
-    test.skip('Actual input', () => {
+    test('Actual input', () => {
       const input = fs
         .readFileSync('./inputs/6-chronal-coordinates.txt', 'utf8')
         .split('\n')
         .filter(x => x);
-      const output = chronalCoordinatesPartOne(input);
+      const output = chronalCoordinatesPartTwo(input, 10000);
       console.log(`Part two answer: ${output}`);
     });
   });
