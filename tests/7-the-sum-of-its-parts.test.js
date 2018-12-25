@@ -30,7 +30,7 @@ describe('7. The Sum of Its Parts', () => {
     });
   });
 
-  describe.only('Part two', () => {
+  describe('Part two', () => {
     test('Test one', () => {
       const input = [
         'Step C must be finished before step A can begin.',

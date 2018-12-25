@@ -72,21 +72,14 @@ const theSumOfItsPartsPartTwo = (input, workers, stepDuration, steps = null, com
 
   const workUpdated = [...work, ...addToWork];
 
-  const workDone = workUpdated.map(x => {
-    return {
-      step: x.step,
-      timeLeft: x.timeLeft - 1,
-    };
-  });
+  const workDone = workUpdated.map(x => ({ step: x.step, timeLeft: x.timeLeft - 1 }));
 
   const updatedCompleted = workDone.reduce((a, step) => {
     if (step.timeLeft <= 0) return [...a, step.step];
     return a;
   }, completed);
 
-  const workFinished = workDone.filter(step => {
-    return !step.timeLeft <= 0;
-  });
+  const workFinished = workDone.filter(step => !step.timeLeft <= 0);
 
   const newCount = counter + 1;
 
